@@ -6,9 +6,7 @@ import (
 )
 
 func main() {
-	args := os.Args
-
-	if len(args) != 2 {
+	if len(os.Args) != 2 {
 		fmt.Printf("s5n (shorten) : shortens passed in argument\n")
 		fmt.Printf("usage: s5n <word to shorten>\n")
 		fmt.Printf("v0.0.1\n")
