@@ -7,9 +7,9 @@ import (
 
 func main() {
 	if len(os.Args) != 2 {
-		fmt.Printf("s5n (shorten) : shortens passed in argument\n")
-		fmt.Printf("usage: s5n <word to shorten>\n")
-		fmt.Printf("v0.0.1\n")
+		fmt.Printf("shorten : shortens passed in argument\n")
+		fmt.Printf("usage: shorten <word to shorten>\n")
+		fmt.Printf("v0.0.2\n")
 		os.Exit(1)
 	}
 

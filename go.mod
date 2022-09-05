@@ -1,3 +1,3 @@
-module s5n
+module shorten
 
 go 1.18

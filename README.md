@@ -1,2 +1,3 @@
-# s5n
-s5n - shortens a word (e.g. interationalization => i18n)
+# shorten
+shorten - shortens a word  (e.g. `shorten interationalization` => `i18n`)
+
