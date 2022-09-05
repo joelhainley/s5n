@@ -4,6 +4,7 @@ import (
 	"bufio"
 	"fmt"
 	"os"
+	"strings"
 )
 
 func main() {
@@ -12,11 +13,9 @@ func main() {
 
 	if (stat.Mode() & os.ModeCharDevice) == 0 {
 		// piped
-		fmt.Printf("we got it from the stream!!!")
 		processPipe()
 	} else {
 		// from terminal
-
 		if len(os.Args) != 2 {
 			fmt.Printf("shorten : shortens passed in argument\n")
 			fmt.Printf("usage: shorten <word to shorten>\n")
@@ -25,8 +24,7 @@ func main() {
 		}
 
 		output := shorten(os.Args[1])
-
-		fmt.Printf(output)
+		fmt.Printf("%s\n", output)
 	}
 
 	os.Exit(0)
@@ -35,8 +33,20 @@ func main() {
 func processPipe() {
 	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		fmt.Printf(shorten(scanner.Text()))
+		fmt.Printf("%s\n", processLine(scanner.Text()))
 	}
+}
+
+// breaks up a line into tokens using spaces
+// shortens all of the tokens then reconstructs the line and returns it
+func processLine(line string) string {
+	words := strings.Fields(line)
+	shortened := make([]string, len(words))
+	for i, s := range words {
+		shortened[i] = shorten(s)
+	}
+
+	return strings.Join(shortened, " ")
 }
 
 /*
@@ -52,5 +62,5 @@ func shorten(input string) string {
 	lastChar := input[len(input)-1:]
 	abbrLen := len(input) - 2
 
-	return fmt.Sprintf("%s%d%s\n", firstChar, abbrLen, lastChar)
+	return fmt.Sprintf("%s%d%s", firstChar, abbrLen, lastChar)
 }
